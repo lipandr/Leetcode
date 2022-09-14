@@ -50,10 +50,10 @@ func FizzBuzzApproach3(n int) []string {
 	// As a Golang map is an unordered collection, it does not preserve the order of keys.
 	// We can use additional data structures to iterate over these maps in sorted order.
 	// We need to perform the following:
-	//Create a slice.
-	//Store keys to the slice.
-	//Sort the slice by keys.
-	//Iterate over the map by the sorted slice.
+	// - Create a slice.
+	// - Store keys to the slice.
+	// - Sort the slice by keys.
+	// - Iterate over the map by the sorted slice.
 
 	keys := make([]int, 0, len(fizzbuzzMap))
 	for k := range fizzbuzzMap {
