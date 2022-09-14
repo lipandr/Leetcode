@@ -28,7 +28,15 @@ func TestFizzBuzz(t *testing.T) {
 		t.Run(tt.testName, func(t *testing.T) {
 			got := FizzBuzz(tt.input)
 			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("%#v got %v want %v", tt.testName, got, tt.want)
+				t.Errorf("Approach 1 - %#v got %v want %v", tt.testName, got, tt.want)
+			}
+			got = FizzBuzzApproach2(tt.input)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("Approach 2 - %#v got %v want %v", tt.testName, got, tt.want)
+			}
+			got = FizzBuzzApproach3(tt.input)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("Approach 3 - %#v got %v want %v", tt.testName, got, tt.want)
 			}
 		})
 	}
