@@ -5,25 +5,27 @@ import (
 	"testing"
 )
 
+var testCases = []struct {
+	testName string
+	input    int
+	want     []string
+}{
+	{
+		"Example 1",
+		3,
+		[]string{"1", "2", "Fizz"}},
+	{
+		"Example 2",
+		5,
+		[]string{"1", "2", "Fizz", "4", "Buzz"}},
+	{
+		"Example 3",
+		15,
+		[]string{"1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14", "FizzBuzz"}},
+}
+
 func TestFizzBuzz(t *testing.T) {
-	testCases := []struct {
-		testName string
-		input    int
-		want     []string
-	}{
-		{
-			"Example 1",
-			3,
-			[]string{"1", "2", "Fizz"}},
-		{
-			"Example 2",
-			5,
-			[]string{"1", "2", "Fizz", "4", "Buzz"}},
-		{
-			"Example 3",
-			15,
-			[]string{"1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14", "FizzBuzz"}},
-	}
+
 	for _, tt := range testCases {
 		t.Run(tt.testName, func(t *testing.T) {
 			got := FizzBuzz(tt.input)
@@ -39,5 +41,13 @@ func TestFizzBuzz(t *testing.T) {
 				t.Errorf("Approach 3 - %#v got %v want %v", tt.testName, got, tt.want)
 			}
 		})
+	}
+}
+
+func BenchmarkFizzBuzz(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, tc := range testCases {
+			FizzBuzzApproach3(tc.input)
+		}
 	}
 }
