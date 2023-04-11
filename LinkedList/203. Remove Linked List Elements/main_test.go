@@ -59,3 +59,15 @@ func TestRemoveElements(t *testing.T) {
 		})
 	}
 }
+
+func BenchmarkRemoveElements(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		removeElements(&ListNode{Val: 1, Next: &ListNode{Val: 2, Next: &ListNode{Val: 3, Next: &ListNode{Val: 4}}}}, 3)
+	}
+}
+
+func BenchmarkRemoveElementsRecursive(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		removeElementsRecursive(&ListNode{Val: 1, Next: &ListNode{Val: 2, Next: &ListNode{Val: 3, Next: &ListNode{Val: 4}}}}, 3)
+	}
+}
