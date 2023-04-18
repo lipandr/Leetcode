@@ -1,4 +1,4 @@
-package main
+package middleNode
 
 // ListNode Definition for singly-linked list.
 type ListNode struct {
@@ -6,13 +6,25 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func MiddleNode(head *ListNode) *ListNode {
-	var array []*ListNode
-	length := 0
-	for head != nil {
-		array = append(array, head)
-		head = head.Next
-		length++
+func middleNode(head *ListNode) *ListNode {
+	slow, fast := head, head
+	for fast != nil && fast.Next != nil {
+		slow = slow.Next
+		fast = fast.Next.Next
 	}
-	return array[length/2]
+	return slow
 }
+
+// Этот алгоритм использует два указателя - медленный (slow) и быстрый (fast).
+// Медленный указатель будет двигаться на одну позицию за каждую итерацию цикла,
+// в то время как быстрый указатель будет двигаться на две позиции. Таким образом,
+// когда быстрый указатель достигнет конца списка, медленный указатель будет указывать на середину.
+//
+// Значения медленного и быстрого указателей начинаются с головы списка. Пока
+// быстрый указатель не достигнет конца списка, и пока еще есть по крайней мере
+// один элемент после него, медленный указатель перемещается на один узел, а быстрый
+// указатель перемещается на два узла. В результате медленный указатель указывает
+// на средний узел в списке, когда быстрый указатель достигнет конца списка.
+//
+// Функция middleNode получает первый узел списка (head) в качестве входного
+// параметра и возвращает средний узел списка.
